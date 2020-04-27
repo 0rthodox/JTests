@@ -8,9 +8,10 @@ public class NikiListTest {
     public void size() {
         CustomList list = new NikiList();
         assertEquals(0, list.size());
-        list.add(3);
+        list.add(042);
         list.add(42);
-        assertEquals(2, list.size());
+        list.add(0x42);
+        assertEquals(3, list.size());
     }
 
     @org.junit.Test
