@@ -96,7 +96,6 @@ public class NikiListTest {
 
     @org.junit.Test
     public void shouldGetItemByIndexOrThrowException() {
-        CustomList list = new NikiList();
         try {
             list.get(1);
         } catch (Throwable ex) {
@@ -105,10 +104,5 @@ public class NikiListTest {
         }
         list.add(42);
         assertEquals(42, list.get(0));
-    }
-
-    @org.junit.After
-    public void clear() {
-        init();
     }
 }
