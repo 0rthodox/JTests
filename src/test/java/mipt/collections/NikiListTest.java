@@ -4,9 +4,15 @@ import static org.junit.Assert.*;
 
 public class NikiListTest {
 
+    private NikiList list;
+
+    @org.junit.Before
+    public void init() {
+        list = new NikiList();
+    }
+
     @org.junit.Test
-    public void size() {
-        CustomList list = new NikiList();
+    public void shouldYieldCorrectSize() {
         assertEquals(0, list.size());
         list.add(042);
         list.add(42);
@@ -15,8 +21,7 @@ public class NikiListTest {
     }
 
     @org.junit.Test
-    public void isEmpty() {
-        CustomList list = new NikiList();
+    public void shouldIndicateEmptiness() {
         assertTrue(list.isEmpty());
         list.add(42);
         assertFalse(list.isEmpty());
@@ -25,16 +30,7 @@ public class NikiListTest {
     }
 
     @org.junit.Test
-    public void contains() {
-        CustomList list = new NikiList();
-        assertFalse(list.contains(42));
-        list.add(42);
-        assertTrue(list.contains(42));
-    }
-
-    @org.junit.Test
-    public void add() {
-        CustomList list = new NikiList();
+    public void shouldContainAddedItems() {
         list.add(42);
         assertTrue(list.contains(42));
         list.add(0x42);
@@ -44,16 +40,14 @@ public class NikiListTest {
     }
 
     @org.junit.Test
-    public void remove() {
-        CustomList list = new NikiList();
+    public void shouldProperlyRemoveItems() {
         list.add(42);
         list.remove(42);
         assertTrue(list.isEmpty());
     }
 
     @org.junit.Test
-    public void find() {
-        NikiList list = new NikiList();
+    public void shouldFindIndexOfExistingItems() {
         list.add(42);
         list.find(42);
         assertEquals(0, list.find(42));
@@ -63,8 +57,12 @@ public class NikiListTest {
     }
 
     @org.junit.Test
-    public void containsAll() {
-        CustomList list = new NikiList();
+    public void shouldYieldSizeIfItemNotExists() {
+        assertEquals(list.size(), list.find(042));
+    }
+
+    @org.junit.Test
+    public void shouldMatchWithEqualList() {
         list.add(42);
         list.add(042);
         list.add(0x42);
@@ -82,8 +80,7 @@ public class NikiListTest {
     }
 
     @org.junit.Test
-    public void containsSublist() {
-        CustomList list = new NikiList();
+    public void shouldYieldTrueIfContainsSublist() {
         list.add(42);
         list.add(042);
         list.add(0x42);
@@ -98,7 +95,7 @@ public class NikiListTest {
     }
 
     @org.junit.Test
-    public void get() {
+    public void shouldGetItemByIndexOrThrowException() {
         CustomList list = new NikiList();
         try {
             list.get(1);
@@ -108,5 +105,10 @@ public class NikiListTest {
         }
         list.add(42);
         assertEquals(42, list.get(0));
+    }
+
+    @org.junit.After
+    public void clear() {
+        init();
     }
 }
